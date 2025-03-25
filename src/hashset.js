@@ -18,6 +18,8 @@ class simpleHashSet {
         return false;
     }
 
+    
+
     contains(value) {
         const index = this.hashFunction(value);
         const bucket = this.buckets[index];

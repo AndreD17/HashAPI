@@ -13,6 +13,7 @@ This is a simple **Hashtable API** built using **Node.js and Express.js**. It al
 - **Node.js**
 - **Express.js**
 - **CORS**
+- **Mocha & Chai (for testing)**
 - **ES Modules (ECMAScript)**
 
 ---
@@ -104,6 +105,43 @@ DELETE /api/remove/john_doe
 
 ---
 
+## Running Tests with Mocha & Chai
+This project includes **Mocha & Chai** for unit testing.
+
+### Install Mocha & Chai:
+```sh
+npm install --save-dev mocha chai supertest
+```
+
+### Run Tests:
+```sh
+npm test
+```
+
+### Example Test (Located in `/test/hashapi.test.js`):
+```js
+import request from "supertest";
+import app from "../server.js";
+import { expect } from "chai";
+
+describe("Usernames API", function () {
+    it("should register a new username", function (done) {
+        request(app)
+            .post("/api/register")
+            .send({ username: "testuser" })
+            .expect(200)
+            .expect("Content-Type", /json/)
+            .end((err, res) => {
+                if (err) return done(err);
+                expect(res.body).to.have.property("message", "Username registered successfully");
+                done();
+            });
+    });
+});
+```
+
+---
+
 ## Folder Structure
 ```
 /hashapi
@@ -111,6 +149,8 @@ DELETE /api/remove/john_doe
 │   ├── routes.js  # API routes
 │   ├── hashset.js # SimpleHashSet class implementation
 │── server.js      # Express server setup
+│── test
+│   ├── hashapi.test.js # Mocha & Chai test cases
 │── package.json   # Project metadata and dependencies
 │── README.md      # Documentation
 ```
@@ -123,5 +163,5 @@ This project is **MIT Licensed**.
 ---
 
 ## Author
-[Your Name](https://github.com/your-username)
+[Damilare](https://github.com/ANDRED17)
 

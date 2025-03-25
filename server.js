@@ -3,7 +3,7 @@ import cors from "cors";
 import routes from "./src/routes.js";  // ✅ Ensure .js is explicitly added
 
 const app = express();
-const PORT = 3000;
+const PORT = 4000;
 
 app.use(cors());
 app.use(express.json());  // ✅ Corrected JSON middleware
